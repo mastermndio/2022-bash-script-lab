@@ -1,12 +1,17 @@
 #!/bin/bash
 
-echo "Getting Ready to install nginx"
+DISTRO=$1
 
-sleep 3
+if [[ $DISTRO == "ubuntu" ]]; then
+	echo "Youre running ubuntu, using apt to install nginx"
+	PKG_MANAGER="apt"
+	PKG_NAME="nginx"
+elif [[ $DISTRO == "redhat" ]]; then
+	echo "Youre running redhat, using yum to install apache"
+	PKG_MANAGER="yum"
+	PKG_NAME="httpd"
+fi
 
-# Install Nginx
-apt install nginx && systemctl start nginx
+$PKG_MANAGER install $PKG_NAME -y
 
-sleep 1
-
-echo "NGINX has been installed and Started!!!"
+echo "DONE!!!"
