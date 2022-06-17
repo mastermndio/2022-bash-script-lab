@@ -12,6 +12,6 @@ elif [[ $DISTRO == "redhat" ]]; then
 	PKG_NAME="httpd"
 fi
 
-$PKG_MANAGER install $PKG_NAME -y
+$PKG_MANAGER install $PKG_NAME -y && systemctl start $PKG_NAME
 
 echo "DONE!!!"
